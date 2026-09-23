@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import type { PrintRequest } from '../api/client'
 import { Header } from '../components/Header'
 import { ReceiptModal } from '../components/ReceiptModal'
 import { ResultContent } from '../components/ResultContent'
-import { preloadCaptureFonts, SaveImageModal } from '../components/SaveImageModal'
+import { SaveImageModal } from '../components/SaveImageModal'
 import { sumPlaytime } from '../data/artists'
 import { useArtists } from '../hooks/useArtists'
 import './ResultPage.css'
@@ -22,11 +22,6 @@ export function ResultPage() {
   const location = useLocation()
   const { artists, loading } = useArtists()
   const [modal, setModal] = useState<ModalKind>('none')
-
-  // 사진 저장용 폰트를 미리 받아 두어 저장 모달이 바로 준비되게 한다
-  useEffect(() => {
-    preloadCaptureFonts().catch(() => {})
-  }, [])
 
   const artist = artists.find((a) => a.id === artistId)
 

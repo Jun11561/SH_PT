@@ -24,10 +24,22 @@
    * 주소창·하단바가 있는 모바일 브라우저에선 세로가 모자라므로, 콘텐츠가 가장 긴 결과 화면(약 765px, 여유 포함 770)이
    * 스크롤 없이 들어가도록 높이 기준도 둔다. svh는 주소창이 보일 때의 높이라 스크롤 중에도 값이 흔들리지 않는다.
    */
-  --u: min(calc(min(100vw, 430px) / 393), calc(100svh / 770));
+  --u: min(calc(min(100vw, 430px) / 393), calc(100vh / 770));
+  /* 화면 높이(svh/vh) 단위: 카드 크기 계산 등에서 사용 */
+  --screen-h: 100vh;
   --page-pad: calc(20 * var(--u));
 
   --font: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+}
+/*
+ * svh 미지원 기기(iOS 15.4 미만, 오래된 안드로이드 크롬 등)에서 svh를 쓰면 --u 전체가 무효가 되어 레이아웃이 깨지므로
+ * 기본값은 vh로 두고, 지원하는 기기에서만 svh로 바꾼다.
+ */
+@supports (height: 100svh) {
+  :root {
+    --u: min(calc(min(100vw, 430px) / 393), calc(100svh / 770));
+    --screen-h: 100svh;
+  }
 }
 
 *,
@@ -71,12 +83,14 @@ img {
   position: relative;
   width: 100%;
   max-width: var(--page-max);
+  min-height: 100vh; /* dvh 미지원 기기용 */
   min-height: 100dvh;
   margin: 0 auto;
   background: var(--color-bg);
   display: flex;
   flex-direction: column;
-  overflow: clip; /* hidden 대신 clip: sticky 버튼이 정상 동작하도록 */
+  overflow: hidden; /* clip 미지원(iOS 15 이하)용. 배경 장식이 페이지 밖으로 나와 가로 스크롤이 생기지 않게 */
+  overflow: clip;
 }
 
 /* 결과 화면의 연한 파란 배경 장식 */
@@ -190,7 +204,10 @@ img {
 /* ===== 모달 ===== */
 .modal-backdrop {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
@@ -204,6 +221,7 @@ img {
   position: relative;
   width: 100%;
   max-width: calc(340 * var(--u));
+  max-height: calc(100vh - calc(48 * var(--u))); /* dvh 미지원 기기용 */
   max-height: calc(100dvh - calc(48 * var(--u)));
   overflow-y: auto;
   overscroll-behavior: contain;

@@ -15,7 +15,7 @@ export function Receipt({ artist }: { artist: Artist }) {
 
       <div className="receipt__meta">
         <span className="receipt__label">DATE</span>
-        <span>{appConfig.receiptDate}</span>
+        <span className="receipt__date">{appConfig.receiptDate}</span>
         <span className="receipt__brand">Wavelog</span>
       </div>
 
@@ -47,9 +47,9 @@ export function Receipt({ artist }: { artist: Artist }) {
       <p className="receipt__footer">
         WAVELOG는 나의 음악 취향을 새로운 경험으로 이어주는 서비스입니다.
         <br />
-        선택한 아티스트를 바탕으로 비슷한 아티스트와 곡을 함께 추천 리스트업합니다.
+        선택한 아티스트를 바탕으로 비슷한 아티스트와 곡을 담은 추천 리스트입니다.
         <br />
-        추천곡을 감상하며 나와 잘 맞는 새로운 음악 취향을 발견해 보세요.
+        추천곡을 감상하며 나와 잘 맞는 새로운 음악 취향을 발견해보세요.
       </p>
     </div>
   )

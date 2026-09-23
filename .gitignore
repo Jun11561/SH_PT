@@ -1,6 +1,7 @@
 # 저장소에는 frontend 앱만 포함
 /reference/
 /Claude outputs/
+/problem_screenshot/
 /package-lock.json
 
 node_modules/
