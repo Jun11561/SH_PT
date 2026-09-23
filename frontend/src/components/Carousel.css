@@ -1,0 +1,54 @@
+.carousel {
+  position: relative;
+  width: 100%;
+}
+.carousel__viewport {
+  overflow: hidden;
+  padding: calc(16 * var(--u)) 0 calc(20 * var(--u));
+  touch-action: pan-y;
+  cursor: grab;
+}
+.carousel__viewport--dragging {
+  cursor: grabbing;
+}
+/* 모든 카드를 같은 칸에 겹쳐 두고, 각자 translateX로 가운데 기준 위치를 잡는다 */
+.carousel__track {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+.carousel__slide {
+  grid-area: 1 / 1;
+  will-change: transform;
+  transition: transform 0.32s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+/* Figma: 옆 카드는 약 86% 크기로 흐리게 노출 */
+.carousel__card {
+  opacity: 0.5;
+  transform: scale(0.86);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.carousel__slide--active .carousel__card {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Figma: 흰 원형(32px) + 그림자, 가운데 카드 가장자리 바깥. left는 Carousel.tsx에서 카드 폭 기준으로 지정 */
+.carousel__arrow {
+  position: absolute;
+  top: calc(50% + 20 * var(--u));
+  width: calc(32 * var(--u));
+  height: calc(32 * var(--u));
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  display: grid;
+  place-items: center;
+  color: #111;
+  z-index: 2;
+}
+.carousel__arrow svg {
+  width: calc(8 * var(--u));
+  height: auto;
+}

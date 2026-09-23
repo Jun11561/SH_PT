@@ -1,0 +1,261 @@
+/* ===== 디자인 토큰 (Figma 기준) ===== */
+:root {
+  --color-primary: #3467e5;
+  --color-primary-dark: #2a55c4;
+  --color-black: #111111;
+  --color-text: #181818;
+  --color-text-sub: #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-line: #e5e7eb;
+  --color-row-bg: #f8f8fa;
+  --color-row-border: #efeff0;
+  --color-bg: #ffffff;
+  --color-tag-border: #d9dde3;
+
+  --radius-card: calc(16 * var(--u));
+  --radius-btn: 999px;
+  --radius-img: calc(8 * var(--u));
+
+  --page-max: 430px;
+  /*
+   * 비율 단위: Figma 프레임의 1px이 현재 화면에서 차지하는 길이.
+   * 모든 크기를 calc(N * var(--u))로 써서 기기마다 Figma와 같은 비율을 유지한다.
+   * 폭(393px 기준)과 높이 중 더 빡빡한 쪽에 맞춘다. Figma 프레임은 상태바·홈바를 포함한 전체 화면이라
+   * 주소창·하단바가 있는 모바일 브라우저에선 세로가 모자라므로, 콘텐츠가 가장 긴 결과 화면(약 765px, 여유 포함 770)이
+   * 스크롤 없이 들어가도록 높이 기준도 둔다. svh는 주소창이 보일 때의 높이라 스크롤 중에도 값이 흔들리지 않는다.
+   */
+  --u: min(calc(min(100vw, 430px) / 393), calc(100svh / 770));
+  --page-pad: calc(20 * var(--u));
+
+  --font: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--color-text);
+  background: #f2f3f5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ===== 페이지 공통 레이아웃 (Figma 393px 기준 비율, 데스크톱에서는 430px 폭으로 가운데 정렬) ===== */
+.page {
+  position: relative;
+  width: 100%;
+  max-width: var(--page-max);
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: clip; /* hidden 대신 clip: sticky 버튼이 정상 동작하도록 */
+}
+
+/* 결과 화면의 연한 파란 배경 장식 */
+.page--decor::before,
+.page--decor::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(52, 103, 229, 0.12) 0%, rgba(52, 103, 229, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.page--decor::before {
+  width: calc(420 * var(--u));
+  height: calc(420 * var(--u));
+  top: calc(-140 * var(--u));
+  right: calc(-180 * var(--u));
+}
+.page--decor::after {
+  width: calc(460 * var(--u));
+  height: calc(460 * var(--u));
+  bottom: calc(-160 * var(--u));
+  left: calc(-200 * var(--u));
+}
+.page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.page__body {
+  flex: 1;
+  padding: 0 var(--page-pad);
+}
+
+/* ===== 헤더 ===== */
+.header {
+  height: calc(56 * var(--u));
+  display: flex;
+  align-items: center;
+  gap: calc(10 * var(--u));
+  padding: 0 var(--page-pad);
+}
+.header__back {
+  width: calc(32 * var(--u));
+  height: calc(32 * var(--u));
+  margin-left: calc(-8 * var(--u));
+  display: grid;
+  place-items: center;
+}
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: calc(6 * var(--u));
+  font-weight: 700;
+  font-size: calc(15 * var(--u));
+  letter-spacing: -0.01em;
+}
+
+/* ===== 버튼 ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(46 * var(--u));
+  padding: 0 calc(24 * var(--u));
+  border-radius: var(--radius-btn);
+  font-size: calc(17 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: transform 0.08s ease, opacity 0.15s ease;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.btn--block {
+  width: 100%;
+}
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn--black {
+  background: var(--color-black);
+  color: #fff;
+}
+.btn--outline {
+  background: #fff;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+
+/* ===== 타이포 ===== */
+.title-xl {
+  font-size: calc(24 * var(--u));
+  line-height: 1.45;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.title-xl .accent {
+  color: var(--color-primary);
+}
+.text-center {
+  text-align: center;
+}
+
+/* ===== 모달 ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(24 * var(--u)) calc(28 * var(--u));
+  z-index: 100;
+  animation: fade-in 0.18s ease;
+}
+/* Figma(영수증 모달): 폭 약 337px, 버튼은 모달 가장자리에서 약 45px 안쪽 */
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: calc(340 * var(--u));
+  max-height: calc(100dvh - calc(48 * var(--u)));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #fff;
+  border-radius: calc(20 * var(--u));
+  padding: calc(36 * var(--u)) calc(20 * var(--u)) calc(14 * var(--u));
+  animation: pop-in 0.22s ease;
+}
+.modal__close {
+  position: absolute;
+  top: calc(14 * var(--u));
+  right: calc(16 * var(--u));
+  width: calc(32 * var(--u));
+  height: calc(32 * var(--u));
+  display: grid;
+  place-items: center;
+  font-size: calc(18 * var(--u));
+  font-weight: 700;
+}
+.modal__title {
+  margin: 0 0 calc(22 * var(--u));
+  font-size: calc(18 * var(--u));
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+.modal__preview {
+  border: 1px solid var(--color-line);
+  border-radius: calc(8 * var(--u));
+  overflow: hidden;
+  background: #fff;
+}
+.modal__actions {
+  margin-top: calc(20 * var(--u));
+  padding: 0 calc(25 * var(--u));
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

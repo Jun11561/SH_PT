@@ -1,0 +1,18 @@
+.result-page .page__body {
+  /* 하단 고정 버튼(.result-page__actions)에 콘텐츠가 가려지지 않도록 여유를 둔다 */
+  padding-bottom: calc(100 * var(--u));
+}
+.result-page .result-page__actions {
+  /* 화면이 짧아 내용이 넘칠 때도(예: 작은 화면) 스크롤과 무관하게 항상 보이도록 고정 */
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(10 * var(--u));
+  padding: calc(12 * var(--u)) var(--page-pad) calc(calc(28 * var(--u)) + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 30%);
+}

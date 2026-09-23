@@ -1,0 +1,30 @@
+/*
+ * 카드 폭: Figma 393px 프레임에서 259px → 화면 폭 비율(259 * --u)로 맞춘다.
+ * 화면이 폭에 비해 낮으면(예: iPhone SE) 버튼까지 한 화면에 들어오도록 높이 기준으로 더 줄인다.
+ * (카드 높이 ≈ 1.087 × 폭 + 148u, 카드 외 고정 요소 합 ≈ 306u → 1.087w + 454u ≤ 100dvh)
+ */
+.select {
+  --artist-card-w: max(160px, min(calc(259 * var(--u)), calc((100svh - 454 * var(--u)) * 0.92)));
+}
+.page__body.select__body {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  padding-right: 0;
+}
+.select__title {
+  margin: calc(36 * var(--u)) var(--page-pad) calc(12 * var(--u));
+}
+.select__loading {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: calc(120 * var(--u)) 0;
+}
+.select__cta {
+  display: flex;
+  justify-content: center;
+  padding: calc(26 * var(--u)) 0 calc(24 * var(--u));
+}
+.select__cta .btn {
+  width: var(--artist-card-w);
+}

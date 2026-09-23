@@ -1,0 +1,46 @@
+.intro {
+  cursor: pointer;
+}
+.page__body.intro__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* Figma: 문구 블록 중심이 화면 세로 약 46% 지점 */
+  padding-bottom: calc(113 * var(--u));
+}
+.intro__text {
+  margin: 0;
+  font-size: calc(18 * var(--u));
+  line-height: 1.6;
+  color: var(--color-text-sub);
+  letter-spacing: -0.01em;
+}
+.intro__text strong {
+  color: var(--color-text);
+  font-size: calc(21 * var(--u));
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+/* 임시 터치 유도 문구 — 디자인 확정 시 교체 */
+.intro__tap {
+  position: absolute;
+  bottom: calc(72 * var(--u));
+  left: 0;
+  right: 0;
+  margin: 0;
+  font-size: calc(13 * var(--u));
+  color: var(--color-text-muted);
+  animation: blink 1.6s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}

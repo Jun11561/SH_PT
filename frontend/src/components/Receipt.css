@@ -1,0 +1,85 @@
+/* 간격은 Figma 영수증 모달의 행 위치 기준 */
+.receipt {
+  background: #fff;
+  padding: calc(33 * var(--u)) calc(14 * var(--u)) calc(25 * var(--u));
+  font-size: calc(10 * var(--u));
+  color: #222;
+  letter-spacing: 0;
+}
+.receipt__logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: calc(32 * var(--u));
+}
+.receipt__meta {
+  display: flex;
+  align-items: center;
+  gap: calc(14 * var(--u));
+  padding-bottom: calc(11 * var(--u));
+  border-bottom: 1.5px solid #222;
+  font-size: calc(11 * var(--u));
+}
+.receipt__label {
+  font-weight: 700;
+}
+.receipt__brand {
+  margin-left: auto;
+}
+
+.receipt__head,
+.receipt__row {
+  display: grid;
+  grid-template-columns: calc(34 * var(--u)) 1fr calc(84 * var(--u)) calc(44 * var(--u));
+  column-gap: calc(8 * var(--u));
+  align-items: center;
+}
+.receipt__head {
+  padding: calc(8 * var(--u)) 0 calc(8 * var(--u));
+  border-bottom: 1px dashed #bbb;
+  color: #666;
+}
+.receipt__list {
+  list-style: none;
+  margin: calc(7 * var(--u)) 0 0;
+  padding: 0;
+}
+.receipt__row {
+  padding: calc(9 * var(--u)) 0;
+  color: #555;
+}
+.receipt__song {
+  color: #111;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.receipt__artist {
+  font-size: calc(9 * var(--u));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.receipt__row--total {
+  border-top: 1px dashed #bbb;
+  border-bottom: 1.5px solid #222;
+  margin-top: calc(7 * var(--u));
+  padding: calc(12 * var(--u)) 0 calc(18 * var(--u));
+}
+.receipt__row--total .receipt__song {
+  font-weight: 500;
+  color: #333;
+}
+.receipt__total {
+  font-weight: 700;
+  color: #111;
+}
+.receipt__footer {
+  margin: calc(15 * var(--u)) 0 0;
+  padding: calc(3 * var(--u)) calc(8 * var(--u));
+  background: #1f1f1f;
+  color: #fff;
+  font-size: calc(7 * var(--u));
+  line-height: 1.6;
+  text-align: center;
+}

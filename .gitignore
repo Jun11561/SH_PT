@@ -1,0 +1,13 @@
+# 저장소에는 frontend 앱만 포함
+/reference/
+/Claude outputs/
+/package-lock.json
+
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

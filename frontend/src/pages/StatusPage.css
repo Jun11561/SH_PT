@@ -1,0 +1,42 @@
+.page__body.status__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Figma(출력중): 문구 첫 줄이 화면 세로 약 29% 지점 */
+  padding-top: calc(175 * var(--u));
+}
+.page__body.status__body.status__body--center {
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: calc(80 * var(--u));
+}
+.status__text {
+  margin: 0 0 calc(76 * var(--u));
+  font-size: calc(20 * var(--u));
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: var(--color-text-sub);
+}
+.status__icon {
+  margin-bottom: calc(30 * var(--u));
+}
+.status__caption {
+  margin: 0;
+  font-size: calc(13 * var(--u));
+  color: var(--color-text-sub);
+}
+.status__caption--printing {
+  font-size: calc(18 * var(--u));
+}
+.status__caption--done {
+  margin-top: calc(22 * var(--u));
+  font-size: calc(15 * var(--u));
+}
+.status__check {
+  animation: pop-in 0.35s ease;
+}
+.status__retry {
+  margin-top: calc(32 * var(--u));
+  padding: 0 calc(40 * var(--u));
+}

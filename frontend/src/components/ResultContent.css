@@ -1,0 +1,121 @@
+.result .result__title {
+  margin: calc(22 * var(--u)) 0 calc(16 * var(--u));
+}
+
+.result__hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(8 * var(--u));
+}
+.result__photo,
+.result__album {
+  position: relative;
+  /* Figma: 약 176 x 180. 높이를 비율 단위로 고정해야 세로가 짧은 화면에서도 한 화면에 들어온다(폭은 화면에 맞춤) */
+  height: calc(180 * var(--u));
+  border-radius: var(--radius-img);
+  overflow: hidden;
+  background: #eee;
+}
+.result__photo img,
+.result__album img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.result__album-caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: calc(12 * var(--u));
+  color: #fff;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0, 0.55) 100%);
+}
+.result__album-caption strong {
+  font-size: calc(18 * var(--u));
+  line-height: 1.2;
+}
+.result__album-caption span {
+  font-size: calc(12 * var(--u));
+  opacity: 0.9;
+}
+
+.result__songs {
+  list-style: none;
+  margin: calc(24 * var(--u)) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(15 * var(--u));
+}
+.song-row {
+  display: flex;
+  align-items: center;
+  height: calc(64 * var(--u));
+  border-radius: calc(10 * var(--u));
+  background: var(--color-row-bg);
+  border: 1px solid var(--color-row-border);
+  overflow: hidden;
+}
+.song-row__cover {
+  width: calc(68 * var(--u));
+  height: 100%;
+  object-fit: cover;
+  flex: 0 0 calc(68 * var(--u));
+}
+.song-row__text {
+  display: flex;
+  flex-direction: column;
+  padding: 0 calc(14 * var(--u));
+  min-width: 0;
+}
+.song-row__title {
+  font-size: calc(15 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.song-row__artist {
+  margin-top: calc(3 * var(--u));
+  font-size: calc(12 * var(--u));
+  color: var(--color-text-sub);
+}
+
+/* 모달 미리보기용 축소 버전 */
+.result--compact {
+  padding: calc(18 * var(--u)) calc(14 * var(--u)) calc(14 * var(--u));
+  background: #fff;
+}
+.result--compact .result__title {
+  font-size: calc(15 * var(--u));
+  margin: 0 0 calc(12 * var(--u));
+}
+.result--compact .result__hero {
+  gap: calc(6 * var(--u));
+}
+.result--compact .result__photo,
+.result--compact .result__album {
+  height: auto;
+  aspect-ratio: 176 / 180;
+}
+.result--compact .result__songs {
+  margin-top: calc(14 * var(--u));
+  gap: calc(8 * var(--u));
+}
+.result--compact .song-row {
+  height: calc(44 * var(--u));
+}
+.result--compact .song-row__cover {
+  width: calc(46 * var(--u));
+  flex-basis: calc(46 * var(--u));
+}
+.result--compact .song-row__title {
+  font-size: calc(11 * var(--u));
+}
+.result--compact .song-row__artist {
+  font-size: calc(9 * var(--u));
+  margin-top: 1px;
+}
