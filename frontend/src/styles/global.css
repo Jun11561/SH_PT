@@ -55,6 +55,12 @@ body,
   margin: 0;
 }
 
+/* iOS가 가로 모드 등에서 글자를 임의로 키워 레이아웃이 어긋나는 것을 막는다 */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   font-family: var(--font);
   color: var(--color-text);
